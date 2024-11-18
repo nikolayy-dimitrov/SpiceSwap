@@ -1,0 +1,7 @@
+<nav>
+  <a routerLink="/" >Home</a>
+  <a routerLink="/recipes" >Recipes</a>
+  <a *ngIf="!AuthService.isLoggedIn()" routerLink="/login">Login</a>
+  <a *ngIf="!AuthService.isLoggedIn()" routerLink="/register">Register</a>
+  <a *ngIf="AuthService.isLoggedIn()" (click)="logout()">Logout</a>
+</nav>
