@@ -1,0 +1,21 @@
+<div class="recipe-card">
+  <h3>{{ recipe?.title }}</h3>
+  <p><strong>Difficulty:</strong> {{ recipe?.difficulty }}</p>
+
+  <div>
+    <strong>Ingredients:</strong>
+    <ul>
+      <li *ngFor="let ingredient of recipe?.ingredients">{{ ingredient }}</li>
+    </ul>
+  </div>
+
+  <div>
+    <strong>Steps:</strong>
+    <ol>
+      <li *ngFor="let step of recipe?.steps">{{ step }}</li>
+    </ol>
+  </div>
+
+  <p><strong>Created by:</strong> {{ recipe?.createdBy }}</p>
+  <p><strong>Created on:</strong> {{ recipe?.createdAt }}</p>
+</div>

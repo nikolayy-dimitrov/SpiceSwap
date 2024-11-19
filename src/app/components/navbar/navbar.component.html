@@ -1,7 +1,14 @@
 <nav>
-  <a routerLink="/" >Home</a>
-  <a routerLink="/recipes" >Recipes</a>
-  <a *ngIf="!AuthService.isLoggedIn()" routerLink="/login">Login</a>
-  <a *ngIf="!AuthService.isLoggedIn()" routerLink="/register">Register</a>
-  <a *ngIf="AuthService.isLoggedIn()" (click)="logout()">Logout</a>
+  <h1 class="logo">SpiceSwap</h1>
+  <div class="mainMenu">
+    <a routerLink="/" >Home</a>
+    <a routerLink="/recipes" >Recipes</a>
+    <a routerLink="/create-recipe" >Add a recipe</a>
+  </div>
+  <div class="userMenu">
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
+    <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Register</a>
+    <a *ngIf="authService.isLoggedIn()" routerLink="/dashboard">Hello, {{ authService.getCurrentUserName() }}</a>
+    <a *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+  </div>
 </nav>

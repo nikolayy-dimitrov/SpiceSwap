@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {NavbarComponent} from "./components/navbar/navbar.component";
-import {FooterComponent} from "./components/footer/footer.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,10 @@ import {FooterComponent} from "./components/footer/footer.component";
 })
 export class AppComponent {
   title = 'SpiceSwap';
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.checkAuthStatus();
+  }
 }

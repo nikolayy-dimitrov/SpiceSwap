@@ -15,9 +15,9 @@ import { NgIf } from "@angular/common";
 })
 export class NavbarComponent {
 
-  constructor(public AuthService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   logout(): void {
-    this.AuthService.logout();
+    this.authService.logout();
   }
 }

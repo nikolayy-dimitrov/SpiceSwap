@@ -1,0 +1,69 @@
+<section id="create-recipe">
+  <h2>Create a Recipe</h2>
+
+  <form (ngSubmit)="createRecipe()">
+<!--    Recipe title-->
+    <div>
+      <label for="title">Recipe Title</label>
+      <input id="title" type="text" [(ngModel)]="recipe.title" name="title" required />
+    </div>
+<!--Recipe Difficulty-->
+    <div>
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty" [(ngModel)]="recipe.difficulty" name="difficulty">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+
+<!--    Recipe Ingredients-->
+    <div>
+      <label>Ingredients</label>
+      <div class="list">
+        <div *ngFor="let ing of recipe.ingredients; let i = index" class="item">
+          • {{ ing }}
+          <button type="button" (click)="removeIngredient(i)" class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          [(ngModel)]="ingredient"
+          name="newIngredient"
+          placeholder="Add new ingredient"
+          #ingredientInput="ngModel"
+          required
+        />
+        <button type="button" (click)="addIngredient()">Add Ingredient</button>
+      </div>
+    </div>
+
+<!--      Recipe Steps-->
+    <div>
+      <label>Instructions</label>
+      <div class="list">
+        <div *ngFor="let ing of recipe.steps; let i = index" class="item">
+          • {{ ing }}
+          <button type="button" (click)="removeStep(i)" class="remove-btn">Remove</button>
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          [(ngModel)]="step"
+          name="nextStep"
+          placeholder="Add next step"
+          #StepInput="ngModel"
+          required
+        />
+        <button type="button" (click)="addStep()">Add Step</button>
+      </div>
+    </div>
+
+    <button type="submit">Create Recipe</button>
+  </form>
+</section>
+
