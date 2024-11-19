@@ -4,6 +4,7 @@
   padding: 16px;
   margin: 16px;
   background-color: #f9f9f9;
+  cursor: pointer;
 }
 
 .recipe-card h3 {

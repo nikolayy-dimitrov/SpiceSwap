@@ -5,7 +5,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  User
+  User,
+  updateProfile
 } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,8 +17,12 @@ export class AuthService {
 
   constructor(private auth: Auth) {}
 
-  register(email: string, password: string) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  async register(email: string, password: string, name?: string) {
+    const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+    if (name) {
+      await updateProfile(userCredential.user, {displayName: name});
+    }
+    return userCredential;
   }
 
   login(email: string, password: string) {
@@ -33,12 +38,16 @@ export class AuthService {
   }
 
   checkAuthStatus() {
-    onAuthStateChanged(this.auth, (user) => {
-      this.userSubject.next(user);
+    onAuthStateChanged(this.auth, (userId) => {
+      this.userSubject.next(userId);
     });
   }
 
   getCurrentUserName(): string | null {
     return this.auth.currentUser?.displayName || this.auth.currentUser?.email || null;
+  }
+
+  getCurrentUserId() {
+    return this.auth.currentUser?.uid || null;
   }
 }

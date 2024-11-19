@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { addDoc, collection, Firestore } from "@angular/fire/firestore";
 import { Recipe } from "../../interfaces/recipe";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { NgForOf } from "@angular/common";
+import { RecipeService } from "../../services/recipe.service";
 
 @Component({
   selector: 'app-create-recipe',
@@ -22,12 +22,14 @@ export class CreateRecipeComponent {
     ingredients: [],
     steps: [],
     difficulty: 'Easy',
+    likes: 0,
+    likedBy: []
   };
   ingredient: string = '';
   step: string = ''
 
   constructor(
-    private firestore: Firestore,
+    private recipeService: RecipeService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -56,23 +58,26 @@ export class CreateRecipeComponent {
 
   async createRecipe() {
     try {
-      const user = this.authService.getCurrentUserName();
-      if (!user) {
+      const userId = this.authService.getCurrentUserId();
+      const userName = this.authService.getCurrentUserName();
+      if (!userId) {
         throw new Error('User is not logged in.');
       }
 
       const recipeData: Recipe = {
         ...this.recipe,
-        createdBy: user,
-        createdAt: new Date()
+        createdBy: userId,
+        creatorName: userName || 'Anonymous',
+        createdAt: new Date(),
+        likes: 0
       } as Recipe;
 
-      const recipeCollection = collection(this.firestore, 'recipes');
-      await addDoc(recipeCollection, recipeData);
+      await this.recipeService.addRecipe(recipeData);
       alert('Recipe created successfully!');
       await this.router.navigate(['/recipes']);
     } catch (error) {
       console.error('Error creating recipe:', error);
+      alert('Failed to create recipe');
     }
   }
 }

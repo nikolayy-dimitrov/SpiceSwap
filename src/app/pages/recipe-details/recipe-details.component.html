@@ -1,0 +1,69 @@
+<section id="recipe-details">
+  <h2>Recipe Details</h2>
+
+  <div *ngIf="recipe">
+    <div *ngIf="!isEditMode">
+      <h3>{{ recipe.title }}</h3>
+      <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+      <h4>Ingredients:</h4>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+      </ul>
+      <h4>Instructions:</h4>
+      <ol>
+        <li *ngFor="let step of recipe.steps">{{ step }}</li>
+      </ol>
+      <div *ngIf="canEdit">
+        <button (click)="toggleEditMode()">Edit Recipe</button>
+      </div>
+      <div *ngIf="recipe">
+        <span>Likes: {{ recipe.likes }}</span>
+
+        <div *ngIf="canLike">
+          <button (click)="likeRecipe()">Like</button>
+        </div>
+      </div>
+      <button type="button" (click)="goBack()">Back</button>
+    </div>
+
+    <div *ngIf="isEditMode">
+      <h3>Edit Recipe</h3>
+      <form (ngSubmit)="updateRecipe()">
+        <div>
+          <label for="title">Recipe Title</label>
+          <input id="title" [(ngModel)]="recipe.title" name="title" required />
+        </div>
+
+        <div>
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty" [(ngModel)]="recipe.difficulty" name="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Ingredients</label>
+          <ul>
+            <li *ngFor="let ingredient of recipe.ingredients; let i = index">
+              <input type="text" [(ngModel)]="recipe.ingredients[i]" name="ingredient-{{ i }}" required />
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <label>Steps</label>
+          <ul>
+            <li *ngFor="let step of recipe.steps; let i = index">
+              <input type="text" [(ngModel)]="recipe.steps[i]" name="step-{{ i }}" required />
+            </li>
+          </ul>
+        </div>
+
+        <button type="submit">Update Recipe</button>
+        <button type="button" (click)="goBack()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</section>

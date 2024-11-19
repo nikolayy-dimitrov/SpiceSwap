@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, updateDoc, deleteDoc, doc, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  collectionData,
+  docData
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Recipe } from '../interfaces/recipe';
 
@@ -10,6 +19,11 @@ export class RecipeService {
   getRecipes(): Observable<Recipe[]> {
     const recipesRef = collection(this.firestore, 'recipes');
     return collectionData(recipesRef, { idField: 'id' }) as Observable<Recipe[]>;
+  }
+
+  getRecipeById(id: string): Observable<Recipe | undefined> {
+    const recipeRef = doc(this.firestore, `recipes/${id}`);
+    return docData(recipeRef, { idField: 'id' }) as Observable<Recipe | undefined>;
   }
 
   addRecipe(recipe: Recipe) {

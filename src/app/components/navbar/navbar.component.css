@@ -4,6 +4,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   background-color: #12a1a5;
+  padding: 12px 0;
 }
 
 .mainMenu,
@@ -17,9 +18,18 @@ a {
   text-decoration: none;
 }
 
+.logo {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
 .logo,
 .userMenu {
   display: flex;
   padding: 0 1.5rem;
 }
 
+#logout {
+  cursor: pointer;
+}

@@ -17,11 +17,12 @@ import { NgIf } from "@angular/common";
 export class RegisterComponent {
   email: string = "";
   password: string = "";
+  name: string = "";
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
-    this.authService.register(this.email, this.password)
+    this.authService.register(this.email, this.password, this.name)
       .then(() => this.router.navigate(['/login']))
       .catch(error => console.error(error));
   }

@@ -1,3 +1,5 @@
+import {Timestamp} from "@angular/fire/firestore";
+
 export interface Recipe {
   id?: string;
   title: string;
@@ -6,6 +8,8 @@ export interface Recipe {
   difficulty: 'Easy' | 'Medium' | 'Hard';
   imageUrl?: string;
   likes: number;
+  likedBy: string[];
   createdBy: string;
-  createdAt: Date;
+  creatorName: string;
+  createdAt: Timestamp | Date;
 }

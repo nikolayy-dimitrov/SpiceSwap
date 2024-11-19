@@ -1,4 +1,4 @@
-<div class="recipe-card">
+<div class="recipe-card" [routerLink]="['/recipes', recipe?.id]">
   <h3>{{ recipe?.title }}</h3>
   <p><strong>Difficulty:</strong> {{ recipe?.difficulty }}</p>
 
@@ -16,6 +16,6 @@
     </ol>
   </div>
 
-  <p><strong>Created by:</strong> {{ recipe?.createdBy }}</p>
-  <p><strong>Created on:</strong> {{ recipe?.createdAt }}</p>
+  <p><strong>Created by:</strong> {{ recipe?.creatorName }}</p>
+  <p><strong>Created on:</strong> {{ formatDate(recipe?.createdAt) }}</p>
 </div>
