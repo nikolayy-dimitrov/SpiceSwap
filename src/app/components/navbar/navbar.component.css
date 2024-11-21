@@ -4,6 +4,16 @@ nav {
   position: relative;
 }
 
+img {
+  display: block;
+  height: 100%;
+  width: 11rem;
+}
+
+img:hover {
+  opacity: 0.8;
+}
+
 .nav-wrapper {
   display: flex;
   align-items: center;
