@@ -1,14 +1,28 @@
 <nav>
-  <a class="logo" routerLink="/">SpiceSwap</a>
-  <div class="mainMenu">
-    <a routerLink="/" >Home</a>
-    <a routerLink="/recipes" >Recipes</a>
-    <a routerLink="/create-recipe" >Add a recipe</a>
-  </div>
-  <div class="userMenu">
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
-    <a *ngIf="!authService.isLoggedIn()" routerLink="/register">Register</a>
-    <a *ngIf="authService.isLoggedIn()" routerLink="/dashboard">Hello, {{ authService.getCurrentUserName() }}</a>
-    <a id="logout" *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+  <div class="nav-wrapper">
+    <a class="logo" routerLink="/">SpiceSwap</a>
+
+    <div class="menu-toggle" (click)="toggleMobileMenu()">
+      <div class="hamburger" [class.active]="isMobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="menu" [class.active]="isMobileMenuOpen">
+      <div class="mainMenu" [class.active]="isMobileMenuOpen">
+        <a routerLink="/" (click)="closeMobileMenu()">Home</a>
+        <a routerLink="/recipes" (click)="closeMobileMenu()">Recipes</a>
+        <a routerLink="/create-recipe" (click)="closeMobileMenu()">Add a recipe</a>
+      </div>
+
+      <div class="userMenu" [class.active]="isMobileMenuOpen">
+        <a id="login" *ngIf="!authService.isLoggedIn()" routerLink="/login" (click)="closeMobileMenu()">Login</a>
+        <a id="register" *ngIf="!authService.isLoggedIn()" routerLink="/register" (click)="closeMobileMenu()">Register</a>
+        <a *ngIf="authService.isLoggedIn()" routerLink="/dashboard" (click)="closeMobileMenu()">Hello, {{ authService.getCurrentUserName() }}</a>
+        <a id="logout" *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+      </div>
+    </div>
   </div>
 </nav>

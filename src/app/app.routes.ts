@@ -13,12 +13,12 @@ import { GuestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'create-recipe', component: CreateRecipeComponent, canActivate: [AuthGuard] },
+  { path: 'create-recipe', component: CreateRecipeComponent},
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipes/:id', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent, canActivate: [GuestGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [GuestGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: '**', redirectTo: '' }
 ];
 

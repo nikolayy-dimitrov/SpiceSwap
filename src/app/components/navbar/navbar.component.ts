@@ -14,10 +14,20 @@ import { NgIf } from "@angular/common";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  isMobileMenuOpen = false;
 
   constructor(public authService: AuthService) {}
 
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+  }
+
   logout(): void {
     this.authService.logout();
+    this.closeMobileMenu();
   }
 }
