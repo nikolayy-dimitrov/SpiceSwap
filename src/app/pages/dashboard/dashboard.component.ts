@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit{
   deleteRecipe(recipeId: string): void {
     if (confirm('Are you sure you want to delete this recipe?')) {
       this.recipeService.deleteRecipe(recipeId).then(() => {
-        alert('RecipeInterface deleted successfully!');
+        alert('Recipe deleted successfully!');
         this.loadUserRecipes();
       }).catch(error => {
         console.error('Error deleting recipe:', error);

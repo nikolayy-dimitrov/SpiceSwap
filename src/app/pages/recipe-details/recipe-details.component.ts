@@ -112,7 +112,7 @@ export class RecipeDetailsComponent implements OnInit {
 
       this.recipeService.updateRecipe(this.recipe.id!, this.recipe).then(() => {
         this.toggleEditMode();
-        alert('RecipeInterface updated successfully!');
+        alert('Recipe updated successfully!');
       }).catch(error => {
         console.error('Error updating recipe:', error);
       });
@@ -124,7 +124,7 @@ export class RecipeDetailsComponent implements OnInit {
       if (confirm('Are you sure you want to delete this recipe?')) {
         this.recipeService.deleteRecipe(this.recipe.id)
           .then(() => {
-            alert('RecipeInterface deleted successfully!');
+            alert('Recipe deleted successfully!');
             this.router.navigate(['/recipes']);
           })
           .catch(error => {

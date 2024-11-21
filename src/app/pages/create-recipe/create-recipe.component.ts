@@ -96,7 +96,7 @@ export class CreateRecipeComponent {
       } as RecipeInterface;
 
       await this.recipeService.addRecipe(recipeData);
-      alert('RecipeInterface created successfully!');
+      alert('Recipe created successfully!');
       await this.router.navigate(['/recipes']);
     } catch (error) {
       console.error('Error creating recipe:', error);
