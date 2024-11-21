@@ -1,0 +1,104 @@
+#dashboard {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.profile-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.action-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  margin-right: 0.5rem;
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-profile {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile input {
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 50%;
+  margin-bottom: 0.75rem;
+}
+
+.edit-profile button {
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+.edit-profile button:hover {
+  background-color: #218838;
+}
+
+.edit-profile button:last-child {
+  background-color: #dc3545;
+}
+
+.edit-profile button:last-child:hover {
+  background-color: #c82333;
+}
+
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+app-recipe-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+app-recipe-card .action-btn {
+  margin-top: 0.5rem;
+}
+
+.user-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

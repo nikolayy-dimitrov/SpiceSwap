@@ -1,9 +1,21 @@
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
+#create-recipe {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#create-recipe h2 {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin: -20px -20px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.2em;
 }
 
 form {
@@ -12,45 +24,78 @@ form {
   gap: 16px;
 }
 
-input, textarea, select, button {
+input, select, button {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 button {
-  background-color: #12a1a5;
+  background-color: #2c3e50;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px;
 }
 
-.list {
-  margin-top: 8px;
+button:hover {
+  background-color: #2980b9;
+}
+
+.input-group {
   display: flex;
-  flex-direction: column;
+  gap: 10px;
   align-items: center;
-  justify-content: space-between;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-
-.item span {
-  flex: 1;
+  margin-bottom: 10px;
 }
 
 .remove-btn {
-  background-color: #ff4c4c;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 6px 12px;
+  background-color: #e74c3c !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 20px;
+  line-height: 1;
+  min-width: auto;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b !important;
+}
+
+.add-input-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.add-input-group input {
+  flex-grow: 1;
+}
+
+.add-input-group button {
+  white-space: nowrap;
   width: auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+button:disabled {
+  background-color: #ccc;
 }

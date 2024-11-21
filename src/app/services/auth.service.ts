@@ -38,9 +38,13 @@ export class AuthService {
   }
 
   checkAuthStatus() {
-    onAuthStateChanged(this.auth, (userId) => {
-      this.userSubject.next(userId);
-    });
+    return new Promise<void>((resolve) => {
+      const unsubscribe = onAuthStateChanged(this.auth, (user) => {
+        this.userSubject.next(user);
+        unsubscribe();
+        resolve();
+      });
+    })
   }
 
   getCurrentUserName(): string | null {
@@ -49,5 +53,12 @@ export class AuthService {
 
   getCurrentUserId() {
     return this.auth.currentUser?.uid || null;
+  }
+
+  async updateDisplayName(newName: string): Promise<void> {
+    const user = this.auth.currentUser;
+    if (user) {
+      return await updateProfile(user, { displayName: newName });
+    }
   }
 }

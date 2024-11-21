@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -11,12 +11,12 @@ import { AuthService } from "./services/auth.service";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'SpiceSwap';
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.authService.checkAuthStatus();
+  async ngOnInit(): Promise<void> {
+    await this.authService.checkAuthStatus();
   }
 }

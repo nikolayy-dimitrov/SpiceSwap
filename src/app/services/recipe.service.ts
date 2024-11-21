@@ -11,9 +11,12 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Recipe } from '../interfaces/recipe';
+import { getDownloadURL, getStorage, ref, uploadBytes } from "@angular/fire/storage";
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
+  private storage = getStorage();
+
   constructor(private firestore: Firestore) {}
 
   getRecipes(): Observable<Recipe[]> {
@@ -29,6 +32,13 @@ export class RecipeService {
   addRecipe(recipe: Recipe) {
     const recipesRef = collection(this.firestore, 'recipes');
     return addDoc(recipesRef, recipe);
+  }
+
+  async uploadImage(file: File): Promise<string> {
+    const filePath = `recipe-images/${Date.now()}_${file.name}`;
+    const storageRef = ref(this.storage, filePath);
+    const snapshot = await uploadBytes(storageRef, file);
+    return getDownloadURL(snapshot.ref);
   }
 
   updateRecipe(id: string, recipe: Partial<Recipe>) {

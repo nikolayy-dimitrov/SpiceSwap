@@ -1,1 +1,33 @@
-<h3>{{ authService.getCurrentUserName() }}</h3>
+<section id="dashboard">
+  <h2>Dashboard</h2>
+
+  <div class="profile-section">
+    <h3>Welcome, {{ currentUserName }}</h3>
+    <button *ngIf="!editMode" (click)="toggleEditMode()">Edit Profile</button>
+
+    <div *ngIf="editMode" class="edit-profile">
+      <label for="displayName">Update Display Name</label>
+      <input
+        id="displayName"
+        [(ngModel)]="newDisplayName"
+        type="text"
+        name="displayName"
+      />
+      <div class="user-edit-btn">
+        <button (click)="updateProfile()">Save</button>
+        <button (click)="toggleEditMode()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <h3>Your Recipes</h3>
+  <div class="recipe-list">
+    <app-recipe-card
+      *ngFor="let recipe of userRecipes"
+      [recipe]="recipe"
+    >
+      <button class="action-btn" [routerLink]="['/recipes', recipe.id]">View</button>
+      <button class="action-btn" (click)="deleteRecipe(recipe.id!)">Delete</button>
+    </app-recipe-card>
+  </div>
+</section>

@@ -1,13 +1,15 @@
 <section id="create-recipe">
   <h2>Create a Recipe</h2>
 
-  <form (ngSubmit)="createRecipe()">
-<!--    Recipe title-->
+  <form #recipeForm="ngForm" (ngSubmit)="createRecipe(recipeForm)">
     <div>
       <label for="title">Recipe Title</label>
       <input id="title" type="text" [(ngModel)]="recipe.title" name="title" required />
+      <div *ngIf="recipeForm.submitted && recipe.title === ''" class="error">
+        Title is required
+      </div>
     </div>
-<!--Recipe Difficulty-->
+
     <div>
       <label for="difficulty">Difficulty</label>
       <select id="difficulty" [(ngModel)]="recipe.difficulty" name="difficulty">
@@ -17,53 +19,49 @@
       </select>
     </div>
 
-<!--    Recipe Ingredients-->
     <div>
       <label>Ingredients</label>
-      <div class="list">
-        <div *ngFor="let ing of recipe.ingredients; let i = index" class="item">
-          • {{ ing }}
-          <button type="button" (click)="removeIngredient(i)" class="remove-btn">Remove</button>
-        </div>
-      </div>
-
-      <div>
-        <input
-          type="text"
-          [(ngModel)]="ingredient"
-          name="newIngredient"
-          placeholder="Add new ingredient"
-          #ingredientInput="ngModel"
-          required
-        />
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients; let i = index">
+          <div class="input-group">
+            <input type="text" [(ngModel)]="recipe.ingredients![i]" name="ingredient-{{ i }}" required />
+            <button type="button" class="remove-btn" (click)="removeIngredient(i)">×</button>
+          </div>
+        </li>
+      </ul>
+      <div class="add-input-group">
+        <input type="text" [(ngModel)]="ingredient" name="newIngredient" placeholder="Add new ingredient" />
         <button type="button" (click)="addIngredient()">Add Ingredient</button>
       </div>
+      <div *ngIf="recipeForm.submitted && (!recipe.ingredients?.length || recipe.ingredients?.length === 0)" class="error">
+        At least one ingredient is required
+      </div>
     </div>
 
-<!--      Recipe Steps-->
     <div>
       <label>Instructions</label>
-      <div class="list">
-        <div *ngFor="let ing of recipe.steps; let i = index" class="item">
-          • {{ ing }}
-          <button type="button" (click)="removeStep(i)" class="remove-btn">Remove</button>
-        </div>
-      </div>
-
-      <div>
-        <input
-          type="text"
-          [(ngModel)]="step"
-          name="nextStep"
-          placeholder="Add next step"
-          #StepInput="ngModel"
-          required
-        />
+      <ul>
+        <li *ngFor="let step of recipe.steps; let i = index">
+          <div class="input-group">
+            <input type="text" [(ngModel)]="recipe.steps![i]" name="step-{{ i }}" required />
+            <button type="button" class="remove-btn" (click)="removeStep(i)">×</button>
+          </div>
+        </li>
+      </ul>
+      <div class="add-input-group">
+        <input type="text" [(ngModel)]="step" name="newStep" placeholder="Add next step" />
         <button type="button" (click)="addStep()">Add Step</button>
+      </div>
+      <div *ngIf="recipeForm.submitted && (!recipe.steps?.length || recipe.steps?.length === 0)" class="error">
+        At least one step is required
       </div>
     </div>
 
-    <button type="submit">Create Recipe</button>
+    <div>
+      <label for="recipeImage">Upload Recipe Image</label>
+      <input id="recipeImage" type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <button type="submit" [disabled]="recipeForm.submitted && !isFormValid()">Create Recipe</button>
   </form>
 </section>
-
