@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from "../../interfaces/recipe";
+import { RecipeInterface } from "../../interfaces/recipe.interface";
 
 import { RecipeService } from "../../services/recipe.service";
 import { RecipeCardComponent } from "../../components/recipe-card/recipe-card.component";
@@ -16,7 +16,7 @@ import { NgForOf } from "@angular/common";
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent implements OnInit {
-  recipes: Recipe[] = [];
+  recipes: RecipeInterface[] = [];
 
   constructor(private recipeService: RecipeService) {}
 

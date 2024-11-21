@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgForOf, NgIf } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Recipe } from "../../interfaces/recipe";
+import { RecipeInterface } from "../../interfaces/recipe.interface";
 import { RecipeService } from "../../services/recipe.service";
 import { AuthService } from "../../services/auth.service";
 import { Location } from "@angular/common";
@@ -19,7 +19,7 @@ import { Location } from "@angular/common";
   styleUrl: './recipe-details.component.css'
 })
 export class RecipeDetailsComponent implements OnInit {
-  recipe: Recipe | null = null;
+  recipe: RecipeInterface | null = null;
   isEditMode: boolean = false;
   currentUserId: string | null = null;
   canEdit: boolean = false;
@@ -112,7 +112,7 @@ export class RecipeDetailsComponent implements OnInit {
 
       this.recipeService.updateRecipe(this.recipe.id!, this.recipe).then(() => {
         this.toggleEditMode();
-        alert('Recipe updated successfully!');
+        alert('RecipeInterface updated successfully!');
       }).catch(error => {
         console.error('Error updating recipe:', error);
       });
@@ -124,7 +124,7 @@ export class RecipeDetailsComponent implements OnInit {
       if (confirm('Are you sure you want to delete this recipe?')) {
         this.recipeService.deleteRecipe(this.recipe.id)
           .then(() => {
-            alert('Recipe deleted successfully!');
+            alert('RecipeInterface deleted successfully!');
             this.router.navigate(['/recipes']);
           })
           .catch(error => {

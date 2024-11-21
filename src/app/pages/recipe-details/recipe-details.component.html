@@ -1,16 +1,16 @@
 <section id="recipe-details">
-  <h2>Recipe Details</h2>
+  <h2>RecipeInterface Details</h2>
 
   <div *ngIf="recipe">
     <div *ngIf="!isEditMode">
       <img [src]="recipe.imageUrl || defaultImageUrl" alt="{{ recipe.title }}" />
       <div class="recipe-actions">
         <div *ngIf="canEdit">
-          <button (click)="toggleEditMode()">Edit Recipe</button>
+          <button (click)="toggleEditMode()">Edit RecipeInterface</button>
         </div>
 
         <div *ngIf="canDelete">
-          <button class="remove-btn" (click)="deleteRecipe()">Delete Recipe</button>
+          <button class="remove-btn" (click)="deleteRecipe()">Delete RecipeInterface</button>
         </div>
       </div>
       <h3>{{ recipe.title }}</h3>
@@ -42,10 +42,10 @@
 
 <!--    Edit Mode Menu-->
     <div *ngIf="isEditMode">
-      <h3>Edit Recipe</h3>
+      <h3>Edit RecipeInterface</h3>
       <form (ngSubmit)="updateRecipe()">
         <div>
-          <label for="title">Recipe Title</label>
+          <label for="title">RecipeInterface Title</label>
           <input id="title" [(ngModel)]="recipe.title" name="title" required />
         </div>
 
@@ -91,8 +91,8 @@
         </div>
 
         <div class="form-actions">
-          <button type="submit">Update Recipe</button>
-          <button class="remove-btn" type="button" (click)="deleteRecipe()">Delete Recipe</button>
+          <button type="submit">Update RecipeInterface</button>
+          <button class="remove-btn" type="button" (click)="deleteRecipe()">Delete RecipeInterface</button>
           <button type="button" (click)="goBack()">Cancel</button>
         </div>
       </form>

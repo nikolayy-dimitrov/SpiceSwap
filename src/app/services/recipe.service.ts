@@ -10,7 +10,7 @@ import {
   docData
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Recipe } from '../interfaces/recipe';
+import { RecipeInterface } from '../interfaces/recipe.interface';
 import { getDownloadURL, getStorage, ref, uploadBytes } from "@angular/fire/storage";
 
 @Injectable({ providedIn: 'root' })
@@ -19,17 +19,17 @@ export class RecipeService {
 
   constructor(private firestore: Firestore) {}
 
-  getRecipes(): Observable<Recipe[]> {
+  getRecipes(): Observable<RecipeInterface[]> {
     const recipesRef = collection(this.firestore, 'recipes');
-    return collectionData(recipesRef, { idField: 'id' }) as Observable<Recipe[]>;
+    return collectionData(recipesRef, { idField: 'id' }) as Observable<RecipeInterface[]>;
   }
 
-  getRecipeById(id: string): Observable<Recipe | undefined> {
+  getRecipeById(id: string): Observable<RecipeInterface | undefined> {
     const recipeRef = doc(this.firestore, `recipes/${id}`);
-    return docData(recipeRef, { idField: 'id' }) as Observable<Recipe | undefined>;
+    return docData(recipeRef, { idField: 'id' }) as Observable<RecipeInterface | undefined>;
   }
 
-  addRecipe(recipe: Recipe) {
+  addRecipe(recipe: RecipeInterface) {
     const recipesRef = collection(this.firestore, 'recipes');
     return addDoc(recipesRef, recipe);
   }
@@ -41,7 +41,7 @@ export class RecipeService {
     return getDownloadURL(snapshot.ref);
   }
 
-  updateRecipe(id: string, recipe: Partial<Recipe>) {
+  updateRecipe(id: string, recipe: Partial<RecipeInterface>) {
     const recipeDoc = doc(this.firestore, `recipes/${id}`);
     return updateDoc(recipeDoc, recipe);
   }

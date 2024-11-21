@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
-import { Recipe } from "../../interfaces/recipe";
+import { RecipeInterface } from "../../interfaces/recipe.interface";
 import { RecipeService } from "../../services/recipe.service";
 import { FormsModule } from "@angular/forms";
 import { NgForOf, NgIf } from "@angular/common";
@@ -21,7 +21,7 @@ import { RecipeCardComponent } from "../../components/recipe-card/recipe-card.co
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit{
-  userRecipes: Recipe[] = [];
+  userRecipes: RecipeInterface[] = [];
   currentUserName: string | null = '';
   editMode: boolean = false;
   newDisplayName: string = '';
@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit{
   deleteRecipe(recipeId: string): void {
     if (confirm('Are you sure you want to delete this recipe?')) {
       this.recipeService.deleteRecipe(recipeId).then(() => {
-        alert('Recipe deleted successfully!');
+        alert('RecipeInterface deleted successfully!');
         this.loadUserRecipes();
       }).catch(error => {
         console.error('Error deleting recipe:', error);

@@ -1,1 +1,83 @@
-<p>home works!</p>
+<div class="home-container" [@fadeIn]="'visible'">
+  <!-- Hero Section -->
+  <section class="hero animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-0']">
+    <div class="hero-content">
+      <h1>Welcome to SpiceSwap</h1>
+      <p class="hero-subtitle">Share, Discover, and Create Amazing Recipes</p>
+      <div class="hero-buttons">
+        <a [routerLink]="['/recipes']" class="btn primary">Browse Recipes</a>
+        <a [routerLink]="['/register']" class="btn secondary">Join Our Community</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-1']"
+           [@gridAnimation]="sectionStates['section-1']">
+    <h2>Why Choose SpiceSwap?</h2>
+    <div class="features-grid">
+      <div class="feature-card grid-item"
+           *ngFor="let feature of features; let i = index"
+           [@cardHover]="cardStates[i]"
+           (mouseenter)="onCardHover(i, true)"
+           (mouseleave)="onCardHover(i, false)">
+        <div class="feature-icon">{{feature.icon}}</div>
+        <h3>{{feature.title}}</h3>
+        <p>{{feature.description}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-2']">
+    <div class="about-content">
+      <h2>About SpiceSwap</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-3']"
+           [@gridAnimation]="sectionStates['section-3']">
+    <h2>How It Works</h2>
+    <div class="steps-container">
+      <div class="step grid-item" *ngFor="let i of [1, 2, 3]">
+        <div class="step-number">{{i}}</div>
+        <h3>Step {{i}}</h3>
+        <p>Step description goes here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-4']"
+           [@gridAnimation]="sectionStates['section-4']">
+    <h2>Popular Categories</h2>
+    <div class="categories-grid">
+      <div class="category-card grid-item" *ngFor="let category of ['Breakfast', 'Main Course', 'Desserts', 'Vegetarian']">
+        <h3>{{category}}</h3>
+        <p>Category description goes here.</p>
+        <a [routerLink]="['/recipes']" class="category-link">Explore →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta animate-section" #animatedSection
+           [@sectionAnimation]="sectionStates['section-5']">
+    <div class="cta-content">
+      <h2>Ready to Start Your Culinary Journey?</h2>
+      <p>Join thousands of food enthusiasts and share your recipes with the world.</p>
+      <div class="cta-buttons">
+        <a [routerLink]="['/register']" class="btn primary">Sign Up Now</a>
+        <a [routerLink]="['/recipes']" class="btn secondary">Browse Recipes</a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Recipe } from "../../interfaces/recipe";
+import { RecipeInterface } from "../../interfaces/recipe.interface";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import {FormsModule, NgForm} from "@angular/forms";
@@ -18,7 +18,7 @@ import { RecipeService } from "../../services/recipe.service";
   styleUrl: './create-recipe.component.css'
 })
 export class CreateRecipeComponent {
-  recipe: Partial<Recipe> = {
+  recipe: Partial<RecipeInterface> = {
     title: '',
     ingredients: [],
     steps: [],
@@ -86,17 +86,17 @@ export class CreateRecipeComponent {
         imageUrl = 'https://firebasestorage.googleapis.com/v0/b/spiceswapapp.firebasestorage.app/o/default-image-recipe.jpg?alt=media&token=4c545371-c9ee-4c6b-8320-6584a1de3306';
       }
 
-      const recipeData: Recipe = {
+      const recipeData: RecipeInterface = {
         ...this.recipe,
         createdBy: userId,
         creatorName: userName || 'Anonymous',
         createdAt: new Date(),
         imageUrl,
         likes: 0
-      } as Recipe;
+      } as RecipeInterface;
 
       await this.recipeService.addRecipe(recipeData);
-      alert('Recipe created successfully!');
+      alert('RecipeInterface created successfully!');
       await this.router.navigate(['/recipes']);
     } catch (error) {
       console.error('Error creating recipe:', error);

@@ -1,9 +1,9 @@
 <section id="create-recipe">
-  <h2>Create a Recipe</h2>
+  <h2>Create a RecipeInterface</h2>
 
   <form #recipeForm="ngForm" (ngSubmit)="createRecipe(recipeForm)">
     <div>
-      <label for="title">Recipe Title</label>
+      <label for="title">RecipeInterface Title</label>
       <input id="title" type="text" [(ngModel)]="recipe.title" name="title" required />
       <div *ngIf="recipeForm.submitted && recipe.title === ''" class="error">
         Title is required
@@ -58,10 +58,10 @@
     </div>
 
     <div>
-      <label for="recipeImage">Upload Recipe Image</label>
+      <label for="recipeImage">Upload RecipeInterface Image</label>
       <input id="recipeImage" type="file" (change)="onFileChange($event)" />
     </div>
 
-    <button type="submit" [disabled]="recipeForm.submitted && !isFormValid()">Create Recipe</button>
+    <button type="submit" [disabled]="recipeForm.submitted && !isFormValid()">Create RecipeInterface</button>
   </form>
 </section>
