@@ -82,9 +82,14 @@ button:active {
   background-color: #c82333;
 }
 
+#recipe-list-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
 .recipe-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
 }
 
@@ -101,4 +106,10 @@ app-recipe-card .action-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
 }
