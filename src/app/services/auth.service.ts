@@ -4,16 +4,15 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
-  User,
-  updateProfile
+  updateProfile, authState
 } from '@angular/fire/auth';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private userSubject = new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable();
+  // firebaseAuth = inject(Auth);
+  // user$ = this.firebaseAuth;
+
+  authState$ = authState(this.auth);
 
   constructor(private auth: Auth) {}
 
@@ -35,16 +34,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.auth.currentUser;
-  }
-
-  checkAuthStatus() {
-    return new Promise<void>((resolve) => {
-      const unsubscribe = onAuthStateChanged(this.auth, (user) => {
-        this.userSubject.next(user);
-        unsubscribe();
-        resolve();
-      });
-    })
   }
 
   getCurrentUserName(): string | null {

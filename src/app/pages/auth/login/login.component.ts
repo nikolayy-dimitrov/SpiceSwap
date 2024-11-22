@@ -5,19 +5,20 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { NgIf } from "@angular/common";
 
 @Component({
-  standalone: true,
   selector: 'app-login',
+  standalone: true,
   imports: [
     FormsModule,
     NgIf
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css'
 })
 
 export class LoginComponent {
   email: string = "";
   password: string = "";
+  errorMessage: string = "";
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -27,7 +28,12 @@ export class LoginComponent {
       this.password.length >= 6;
   }
 
-  login() {
+  async login(form: NgForm) {
+    if (!this.isFormValid(form)) {
+      this.errorMessage = 'Please fill in all fields correctly';
+      return;
+    }
+
     this.authService.login(this.email, this.password)
       .then(() => this.router.navigate(['/dashboard']))
       .catch(error => console.error(error));

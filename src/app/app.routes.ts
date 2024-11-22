@@ -8,17 +8,17 @@ import { RecipeDetailsComponent } from "./pages/recipe-details/recipe-details.co
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 
-import { AuthGuard } from './guards/auth.guard';
-import { GuestGuard } from './guards/guest.guard';
+import { authGuard } from "./guards/auth.guard";
+import { guestGuard } from "./guards/guest.guard";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'create-recipe', component: CreateRecipeComponent},
+  { path: 'create-recipe', component: CreateRecipeComponent, canActivate: [authGuard] },
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipes/:id', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
 

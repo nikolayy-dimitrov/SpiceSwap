@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
+  <form (ngSubmit)="login(loginForm)" #loginForm="ngForm" class="login-form">
     <h2>Login</h2>
 
     <label for="email">Email:</label>
@@ -30,6 +30,6 @@
       Invalid password.
     </div>
 
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button type="submit" [disabled]="loginForm.invalid || !isFormValid(loginForm)">Login</button>
   </form>
 </div>

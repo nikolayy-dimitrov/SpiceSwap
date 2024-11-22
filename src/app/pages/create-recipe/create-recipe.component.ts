@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RecipeInterface } from "../../interfaces/recipe.interface";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import {FormsModule, NgForm} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import { FormsModule, NgForm } from "@angular/forms";
+import { NgForOf, NgIf } from "@angular/common";
 import { RecipeService } from "../../services/recipe.service";
 
 @Component({

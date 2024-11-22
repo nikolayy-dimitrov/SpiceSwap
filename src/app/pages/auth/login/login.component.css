@@ -42,3 +42,13 @@ button:disabled {
   color: red;
   font-size: 14px;
 }
+
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+}
+
