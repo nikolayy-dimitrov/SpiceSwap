@@ -1,6 +1,25 @@
 <section id="recipes">
   <h2>Recipes</h2>
+
+  <div class="filters">
+    <div class="difficulty-filter">
+      <span>Difficulty:</span>
+      <div class="difficulty-buttons">
+        <button
+          *ngFor="let difficulty of difficulties"
+          (click)="onDifficultyChange(difficulty)"
+          [ngClass]="{'active': selectedDifficulty === difficulty}">
+          {{ difficulty }}
+        </button>
+      </div>
+    </div>
+
+    <button class="sort-button" (click)="toggleSortOrder()">
+      Sort By {{ sortOrder === 'desc' ? 'Newest' : 'Oldest' }}
+    </button>
+  </div>
+
   <div class="recipe-list">
-    <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-card>
+    <app-recipe-card *ngFor="let recipe of filteredRecipes" [recipe]="recipe"></app-recipe-card>
   </div>
 </section>
