@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RecipeInterface } from "../../interfaces/recipe.interface";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import {FormArray, FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from "@angular/forms";
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgForOf, NgIf } from "@angular/common";
 import { RecipeService } from "../../services/recipe.service";
 
