@@ -49,15 +49,15 @@ SpiceSwap is a dynamic, community-driven recipe-sharing web application where us
 **The architecture of SpiceSwap is based on a client-server model. The client-side is built using Angular and communicates with Firebase services for user authentication, data storage, and real-time updates.**
 
 ### Frontend (Angular):
-#### Components handle user interface (UI) logic.
-#### Services are used to interact with Firebase for CRUD operations (creating, reading, updating, and deleting data).
-#### Firebase Authentication is integrated for secure login and registration.
+- Components handle user interface (UI) logic.
+- Services are used to interact with Firebase for CRUD operations (creating, reading, updating, and deleting data).
+- Firebase Authentication is integrated for secure login and registration.
 
 ### Backend (Firebase):
-#### Firebase Authentication: Manages user authentication and user session states.
-#### Firestore: A NoSQL cloud database that stores recipes, user information, and comments.
-#### Firebase Storage: Used for storing and serving images associated with recipes.
-#### Firebase Hosting: Serves the web app from Firebase's fast and secure hosting platform.
+- Firebase Authentication: Manages user authentication and user session states.
+- Firestore: A NoSQL cloud database that stores recipes, user information, and comments.
+- Firebase Storage: Used for storing and serving images associated with recipes.
+- Firebase Hosting: Serves the web app from Firebase's fast and secure hosting platform.
 
 ## Screenshots
 ### Home Page
