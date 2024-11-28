@@ -2,6 +2,7 @@
   <h2>Recipe Details</h2>
 
   <div *ngIf="recipe">
+    <!--    View Mode-->
     <div *ngIf="!isEditMode">
       <img [src]="recipe.imageUrl || defaultImageUrl" alt="{{ recipe.title }}" />
       <div class="recipe-actions">
@@ -27,7 +28,6 @@
       </ol>
 
       <div class="recipe-actions">
-
         <div *ngIf="recipe" class="likes">
           <span>Likes: {{ recipe.likes }}</span>
 
@@ -40,60 +40,97 @@
       </div>
     </div>
 
-<!--    Edit Mode Menu-->
+    <!--Edit Mode Menu-->
     <div *ngIf="isEditMode">
       <h3>Edit Recipe</h3>
-      <form (ngSubmit)="updateRecipe()">
+      <form [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+        <!--Title-->
         <div>
           <label for="title">Recipe Title</label>
-          <input id="title" [(ngModel)]="recipe.title" name="title" required />
+          <input id="title" formControlName="title" [disabled]="true" readonly />
         </div>
 
+        <!--Difficulty-->
         <div>
           <label for="difficulty">Difficulty</label>
-          <select id="difficulty" [(ngModel)]="recipe.difficulty" name="difficulty">
+          <select id="difficulty" formControlName="difficulty">
             <option value="Easy">Easy</option>
             <option value="Medium">Medium</option>
             <option value="Hard">Hard</option>
           </select>
         </div>
 
+        <!--Ingredients-->
         <div>
           <label>Ingredients</label>
-          <ul>
-            <li *ngFor="let ingredient of recipe.ingredients; let i = index">
-              <div class="input-group">
-                <input type="text" [(ngModel)]="recipe.ingredients[i]" name="ingredient-{{ i }}" required />
-                <button type="button" class="remove-btn" (click)="removeIngredient(i)">×</button>
-              </div>
-            </li>
-          </ul>
+          <div formArrayName="ingredients">
+            <div *ngFor="let ingredient of ingredientsArray.controls; let i = index" class="input-group">
+              <input
+                type="text"
+                [formControlName]="i"
+                readonly
+              />
+              <button type="button" class="remove-btn" (click)="removeIngredient(i)">×</button>
+            </div>
+          </div>
+
+          <div *ngIf="isIngredientsInvalid" class="error">
+            {{ errorMessages.ingredients.required }}
+          </div>
+
           <div class="add-input-group">
-            <input type="text" [(ngModel)]="newIngredient" name="newIngredient" placeholder="Add new ingredient" />
-            <button type="button" (click)="addIngredient()">Add Ingredient</button>
+            <input
+              #newIngredientInput
+              type="text"
+              placeholder="Add new ingredient"
+            />
+            <button
+              type="button"
+              (click)="addIngredient(newIngredientInput.value); newIngredientInput.value = ''"
+            >
+              Add Ingredient
+            </button>
           </div>
         </div>
 
+        <!--Steps-->
         <div>
           <label>Steps</label>
-          <ul>
-            <li *ngFor="let step of recipe.steps; let i = index">
-              <div class="input-group">
-                <input type="text" [(ngModel)]="recipe.steps[i]" name="step-{{ i }}" required />
-                <button type="button" class="remove-btn" (click)="removeStep(i)">×</button>
-              </div>
-            </li>
-          </ul>
+          <div formArrayName="steps">
+            <div *ngFor="let step of stepsArray.controls; let i = index" class="input-group">
+              <input
+                type="text"
+                [formControlName]="i"
+                readonly
+              />
+              <button type="button" class="remove-btn" (click)="removeStep(i)">×</button>
+            </div>
+          </div>
+
+          <div *ngIf="isStepsInvalid" class="error">
+            {{ errorMessages.steps.required }}
+          </div>
+
           <div class="add-input-group">
-            <input type="text" [(ngModel)]="newStep" name="newStep" placeholder="Add new step" />
-            <button type="button" (click)="addStep()">Add Step</button>
+            <input
+              #newStepInput
+              type="text"
+              placeholder="Add new step"
+            />
+            <button
+              type="button"
+              (click)="addStep(newStepInput.value); newStepInput.value = ''"
+            >
+              Add Step
+            </button>
           </div>
         </div>
 
+        <!--Buttons-->
         <div class="form-actions">
-          <button type="submit">Update Recipe</button>
+          <button type="submit" [disabled]="recipeForm.invalid">Update Recipe</button>
           <button class="remove-btn" type="button" (click)="deleteRecipe()">Delete Recipe</button>
-          <button type="button" (click)="goBack()">Cancel</button>
+          <button id="cancel-btn" type="button" (click)="toggleEditMode()">Cancel</button>
         </div>
       </form>
     </div>
