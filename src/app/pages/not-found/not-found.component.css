@@ -1,0 +1,47 @@
+/* Parent container styles */
+#not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2C3D4F;
+  color: #333;
+}
+
+/* Inner container */
+.container {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #e12f2f;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #2C3D4F;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.home-link:hover {
+  transform: scale(1.02);
+}
